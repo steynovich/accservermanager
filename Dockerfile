@@ -8,7 +8,8 @@ RUN mkdir -p /accservermanager /data
 
 WORKDIR /accservermanager
 
-RUN useradd -ms /bin/bash someuser && \
+RUN sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \
+	useradd -ms /bin/bash someuser && \
     chown -R someuser:someuser /accservermanager /data
 
 USER someuser
